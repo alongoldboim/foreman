@@ -21,9 +21,11 @@ $(document).on('mouseenter', '.collapse .dropdown.menu_tab_dropdown', function()
   }
 });
 $(document).on('mouseleave', '.collapse .dropdown.menu_tab_dropdown', function(){
-  if($(this).hasClass('open') && !($(this).hasClass('org-switcher'))){
-    $(this).find('.dropdown-toggle:first').click();
-  }
+  if($(this).hasClass('open')){
+    if($(this).hasClass('org-switcher')){
+      $('.org-submenu').hide();
+      $('.loc-submenu').hide();}
+    $(this).find('.dropdown-toggle:first').click();}
 });
 
 // keep submenu for loc/org picker open when mouse is moved diagonally and not hovering over menu
@@ -41,14 +43,6 @@ $(document).on('mouseleave','.org-submenu', function(){
 });
 $(document).on('mouseleave','.loc-submenu', function(){
     $('.loc-submenu').hide();
-});
-
-$(document).on('mouseleave','.dropdown-menu', function(){
-    if($(this).parent().hasClass('org-switcher')) {
-        $('.org-submenu').hide();
-        $('.loc-submenu').hide();
-        $(this).find('.dropdown-toggle:first').click();
-    }
 });
 
 function mark_active_menu() {
